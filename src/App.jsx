@@ -22,7 +22,13 @@ export default function App() {
         <Route path="/blog/:id" element={<BlogDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/dashboard" element={<AdminDashboard />} />
+       <Route
+  path="/dashboard"
+  element={
+    isAdmin ? <AdminDashboard /> : <Navigate to="/login" />
+  }
+/>
+
       </Routes>
     </BrowserRouter>
   );
