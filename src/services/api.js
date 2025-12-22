@@ -1,7 +1,9 @@
 import axios from "axios";
 
+export const BASE_URL = "https://backend-blog-1-tdc2.onrender.com";
+
 const API = axios.create({
-  baseURL: "https://backend-blog-1-tdc2.onrender.com/api",
+  baseURL: `${BASE_URL}/api`,
 });
 
 // token auto attach
