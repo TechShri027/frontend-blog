@@ -8,7 +8,7 @@ import Signup from "./components/Signup";
 import { useAuth } from "./context/AuthContext";
 
 export default function App() {
-  const { currentUser, currentUserToken } = useAuth() 
+  const { currentUser, token } = useAuth() 
 
   return (
     <BrowserRouter>
@@ -17,18 +17,12 @@ export default function App() {
         {/* Pass user and token to BlogList */}
         <Route
           path="/"
-          element={<BlogList user={currentUser} token={currentUserToken} />}
+          element={<BlogList user={currentUser} token={token} />}
         />
         <Route path="/blog/:id" element={<BlogDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-       <Route
-  path="/dashboard"
-  element={
-    isAdmin ? <AdminDashboard /> : <Navigate to="/login" />
-  }
-/>
-
+        <Route path="/dashboard" element={<AdminDashboard />} />
       </Routes>
     </BrowserRouter>
   );
