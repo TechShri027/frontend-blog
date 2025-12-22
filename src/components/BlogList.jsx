@@ -9,7 +9,7 @@ export default function BlogList({ user, token }) {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await API.get("/api/blogs");
+        const res = await API.get("/blogs");
         setBlogs(res.data);
       } catch (err) {
         console.error("Error fetching blogs:", err);
