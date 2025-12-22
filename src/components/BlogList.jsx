@@ -57,7 +57,7 @@ export default function BlogList({ user, token }) {
           >
             {/* Blog Image */}
             <img
-              src={blog.image ? `http://localhost:5000/uploads/${blog.image}` : "/default.jpg"}
+              src={blog.image ? `https://backend-blog-1-tdc2.onrender.com/uploads/${blog.image}` : "/default.jpg"}
               alt={blog.title}
               className="w-full h-48 object-cover rounded-md mb-4"
             />
