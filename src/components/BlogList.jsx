@@ -57,11 +57,12 @@ export default function BlogList({ user, token }) {
             className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition"
           >
             {/* Blog Image */}
-            <img
-              src={blog.image ? `${BASE_URL}/uploads/${blog.image}` : "/default.jpg"}
-              alt={blog.title}
-              className="w-full h-48 object-cover rounded-md mb-4"
-            />
+           <img
+  src={blog.image || "/default.jpg"}
+  alt={blog.title}
+  className="w-full h-48 object-cover rounded-md mb-4"
+/>
+
 
             {/* Blog Title */}
             <h3 className="text-xl font-semibold mb-2 text-gray-900">{blog.title}</h3>
