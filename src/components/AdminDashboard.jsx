@@ -124,19 +124,15 @@ export default function AdminDashboard() {
 
     try {
       setLoading(true);
+     const formData = new FormData();
+formData.append("title", blog.title);
+formData.append("content", blog.content);
+if (image) formData.append("image", image);
 
-      // ✅ FormData for image upload
-      const formData = new FormData();
-      formData.append("title", blog.title);
-      formData.append("content", blog.content);
-      formData.append("image", image);
+await API.post("/blogs", formData, {
+  headers: { "Content-Type": "multipart/form-data" },
+});
 
-      await API.post("/blogs", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
 
       alert("Blog posted successfully!");
 
