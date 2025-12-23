@@ -131,7 +131,7 @@ export default function AdminDashboard() {
       formData.append("content", blog.content);
       formData.append("image", image);
 
-      await API.post("/blogs/create", formData, {
+      await API.post("/blogs", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
