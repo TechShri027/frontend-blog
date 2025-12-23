@@ -1,13 +1,20 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import API from "../services/api";
-import { BASE_URL } from "../services/api";
+import { SERVER_URL } from "../services/api";
 
 export default function BlogDetails() {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(true);
+
+  const getImageUrl = (image) => {
+    if (!image) return null;
+    if (image.startsWith("http")) return image;
+    return `${SERVER_URL}/uploads/${image}`;
+  };
+
 
   // Fetch single blog by ID
   useEffect(() => {
@@ -62,7 +69,7 @@ export default function BlogDetails() {
        
         {blog.image && (
           <img
-            src={`${BASE_URL}/uploads/${blog.image}`}
+            src={getImageUrl(blog.image)}
             alt={blog.title}
             className="w-full h-80 object-cover rounded-md"
           />

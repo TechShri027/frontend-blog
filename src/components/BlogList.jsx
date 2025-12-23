@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
 import { Link } from "react-router-dom";
+import { SERVER_URL } from "../services/api";
 
 export default function BlogList({ user, token }) {
   const [blogs, setBlogs] = useState([]);
@@ -39,6 +40,12 @@ export default function BlogList({ user, token }) {
     }
   };
 
+  const getImageUrl = (image) => {
+    if (!image) return "/default.jpg";
+    if (image.startsWith("http")) return image;
+    return `${SERVER_URL}/uploads/${image}`;
+  };
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8 text-gray-800">All Blogs</h1>
@@ -46,7 +53,7 @@ export default function BlogList({ user, token }) {
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {blogs.map(blog => (
           <div key={blog._id} className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition">
-            <img src={blog.image || "/default.jpg"} alt={blog.title} className="w-full h-48 object-cover rounded-md mb-4" />
+            <img src={getImageUrl(blog.image)} alt={blog.title} className="w-full h-48 object-cover rounded-md mb-4" />
 
             <h3 className="text-xl font-semibold mb-2 text-gray-900">{blog.title}</h3>
             <p className="text-gray-600 text-sm mb-4">{blog.content.slice(0, 120)}...</p>
